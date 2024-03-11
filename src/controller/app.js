@@ -1,13 +1,8 @@
 import { taskModel } from "../model/taskManager.js";
 
-export const getApp = async (req,res)=>{
+export const getApp =  (req,res)=>{
     // Debe de mostrar la pagina principal con todo el menu post, put, delete
-    try{
-    res.json({hola: 'mundo'});
-    }
-    catch(error){
-        res.status(500).send(error)
-    }
+      res.send('<h1>Hola</h1>');
 };
 
 export const postApp = async (req,res) => {
