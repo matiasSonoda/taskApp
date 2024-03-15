@@ -1,23 +1,25 @@
-import { taskModel } from "../model/taskManager.js";
-
+import { ErrFechaInvalida, ZError } from "../errors/error.js";
+import { validateAndSave } from "../utils/postFunction.js";
+import  taskModel  from "../model/taskManager.js";
+import { ZodError } from "zod";
 export const getApp =  (req,res)=>{
     // Debe de mostrar la pagina principal con todo el menu post, put, delete
       res.send('<h1>Hola</h1>');
 };
 
-export const postApp = async (req,res) => {
-    //tiene que poder crear tareas con titulo, descripcion, fecha de creación , fecha de vencimiento y estado de la tarea
+export const postApp = async (req,res, next) => {
     try{
-
-        const task = await new taskModel(req.body);
-        task.expiryDate = new Date(req.body.expiryDate);
-        await task.save();
-        console.log(' se guardo en la base de datos ');
-        res.send(task);
-
-    }
+        const task = await validateAndSave(req.body)
+        res.status(200).send(task)
+        }
     catch(error){
-        res.status(500).send(error);
+        if (error instanceof ZError){
+           return next(error)}
+        if (error instanceof ErrFechaInvalida){
+            return next(error)
+        }
+        console.log('estoy aca')
+        res.status(error.status || 500).json({mensaje: error.message, name: error.name})
     };
 };
 

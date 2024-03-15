@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import {Schema, model } from "mongoose";
 
-const taskSchema = new mongoose.Schema({
+const taskSchema = new Schema({
 
     title: {
 
@@ -16,14 +16,14 @@ const taskSchema = new mongoose.Schema({
 
     startDate: {
 
-        type: Date,
-        default: Date.now
+        type: Date ,
+        default: new Date
 
     },
     expiryDate: {
 
-        type:String,
-        require:true
+        type: Date,
+        required:true
 
     },
 
@@ -33,4 +33,6 @@ const taskSchema = new mongoose.Schema({
     }
 });
 
-export const taskModel = mongoose.model('taskModel', taskSchema);
+const taskModel = model('task', taskSchema);
+
+export default taskModel;
