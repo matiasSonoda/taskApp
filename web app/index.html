@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="contenedor-header">
+        <header><h1>soy un header</h1></header>
+    </div>
+    <div class="contenedor-main">
+        <div class="contenedor-title">
+            <h1>Task manager</h1>
+        </div>
+            <div class="contenedor-task">
+                <div class="centrado">
+                    <form id="saveTask">
+                        <label for="title"> Title: <input type="text" id="title" name="title" required></label><br>
+                        <label for="description">Description: <input type="text" id="description" name="description"> </label><br>
+                         <!--<label for="dateStart">Start Date: <input type="datetime-local" id="dateStart"></label><br>-->
+                        <label for="dateEnd">Expiry Date: <input type="datetime-local" id="dateEnd" name="dateEnd" required> </label><br>
+                        <input type="submit" value="save">
+                    </form>
+                </div>
+            </div>
+    </div>
+    <div class="contenedor-footer">
+        <footer>soy un footer</footer>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>

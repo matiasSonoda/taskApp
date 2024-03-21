@@ -29,7 +29,7 @@ const taskSchema = new Schema({
 
     state: {
         type: Boolean,
-        required: true
+        required: false
     }
 });
 
